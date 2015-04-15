@@ -39,3 +39,8 @@ web:
 
 # - create database
 # docker-compose run web rake db:create
+
+# and so on
+# docker-compose stop
+# docker-compose start
+# docker-compose logs
