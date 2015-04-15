@@ -1,0 +1,41 @@
+db:
+  image: postgres
+  ports:
+    - "5432"
+
+#redis:
+#  image: mini/redis
+#  ports:
+#  - "6379"
+
+web:
+  build: .
+#  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  command: bundle exec puma -C config/puma.rb
+  volumes:
+    - .:/appror
+  ports:
+    - "3000:3000"
+  links:
+    - db
+#    - redis
+
+
+
+
+# Instructions
+
+# - first build
+# docker-compose run web
+
+# - or run and create new rails application in current dir
+# docker-compose run web rails new . --force --database=postgresql --skip-bundle
+
+# - update image after changes
+# docker-compose build
+
+# - launch stack
+# docker-compose up
+
+# - create database
+# docker-compose run web rake db:create
